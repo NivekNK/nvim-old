@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\Nivek\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\Nivek\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "C:\\Users\\Nivek\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-buffer",
@@ -108,6 +113,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\Nivek\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["darkplus.nvim"] = {
+    loaded = true,
+    path = "C:\\Users\\Nivek\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\darkplus.nvim",
+    url = "https://github.com/lunarvim/darkplus.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -189,10 +199,10 @@ _G.packer_plugins = {
     path = "C:\\Users\\Nivek\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
-  ["vim-monokai-tasty"] = {
+  ["vim-bbye"] = {
     loaded = true,
-    path = "C:\\Users\\Nivek\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-monokai-tasty",
-    url = "https://github.com/patstockwell/vim-monokai-tasty"
+    path = "C:\\Users\\Nivek\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-bbye",
+    url = "https://github.com/moll/vim-bbye"
   }
 }
 
