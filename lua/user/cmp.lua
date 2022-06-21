@@ -42,7 +42,8 @@ local kind_icons = {
     Struct = "",
     Event = "",
     Operator = "",
-    TypeParameter = ""
+    TypeParameter = "",
+    Copilot = ""
 }
 
 cmp.setup {
@@ -92,8 +93,14 @@ cmp.setup {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             -- Kind incons
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            if entry.source.name == "copilot" then
+                vim_item.kind = string.format("%s", kind_icons["Copilot"])
+                vim_item.kind_hl_group = "CmpItemKindCopilot"
+            else
+                vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            end
             vim_item.menu = ({
+                copilot = "[Copilot]",
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[NVIM_LUA]",
                 luasnip = "[Snippet]",
@@ -104,6 +111,7 @@ cmp.setup {
         end
     },
     sources = {
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip" },
@@ -122,4 +130,6 @@ cmp.setup {
         native_menu = false
     }
 }
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 

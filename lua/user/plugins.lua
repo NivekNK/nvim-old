@@ -80,6 +80,18 @@ return packer.startup(function(use)
     }
     use "nvim-treesitter/playground"            -- Treesitter theme creator
 
+    -- Copilot
+    use {
+        "zbirenbaum/copilot.lua",
+        event = { "VimEnter" },
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup()
+            end, 100)
+        end
+    }
+    use "zbirenbaum/copilot-cmp"
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOSTRAP then
         require("packer").sync()
