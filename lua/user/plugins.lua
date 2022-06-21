@@ -48,6 +48,7 @@ return packer.startup(function(use)
 
     -- Colorscheme
     use "cpea2506/one_monokai.nvim"             -- One Monokai colorscheme
+    use "lunarvim/darkplus.nvim"
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                      -- The completion plugin
@@ -68,6 +69,16 @@ return packer.startup(function(use)
     -- LSP
     use "neovim/nvim-lspconfig"                 -- Enable LSP
     use "williamboman/nvim-lsp-installer"       -- Simple to use language server installer
+
+    -- Telescope
+    use "nvim-telescope/telescope.nvim"         -- Fuzzy finder
+
+    -- Treesitter
+    use {
+        "nvim-treesitter/nvim-treesitter",      -- Language highlighting
+        run = ":TSUpdate"
+    }
+    use "nvim-treesitter/playground"            -- Treesitter theme creator
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOSTRAP then
