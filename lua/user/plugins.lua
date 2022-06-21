@@ -26,6 +26,7 @@ vim.cmd [[
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
+    vim.notify("Packer not working!")
     return
 end
 
@@ -41,29 +42,35 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
     -- Required plugins
-    use "wbthomason/packer.nvim"        -- Have packer manage itself
-    use "nvim-lua/popup.nvim"           -- An implementation of the Popup API from vim in Neovim
-    use "nvim-lua/plenary.nvim"         -- Useful lua functions used in lots of plugins
-    
+    use "wbthomason/packer.nvim"                -- Have packer manage itself
+    use "nvim-lua/popup.nvim"                   -- An implementation of the Popup API from vim in Neovim
+    use "nvim-lua/plenary.nvim"                 -- Useful lua functions used in lots of plugins
+
     -- Colorscheme
-    use "cpea2506/one_monokai.nvim"     -- One Monokai colorscheme
+    use "cpea2506/one_monokai.nvim"             -- One Monokai colorscheme
 
-    -- cmp
-    use "hrsh7th/nvim-cmp"              -- The completion plugin
-    use "hrsh7th/cmp-buffer"            -- buffer completions
-    use "hrsh7th/cmp-path"              -- path completions
-    use "hrsh7th/cmp-cmdline"           -- cmdline completions
-    use "saadparwaiz1/cmp_luasnip"      -- snippet completions
-
-    -- Copilot
-    -- use "github/copilot.vim"
+    -- Cmp
+    use "hrsh7th/nvim-cmp"                      -- The completion plugin
+    use "hrsh7th/cmp-buffer"                    -- Buffer completions
+    use "hrsh7th/cmp-path"                      -- Path completions
+    use "hrsh7th/cmp-cmdline"                   -- Cmdline completions
+    use "saadparwaiz1/cmp_luasnip"              -- Snippet completions
+    use "hrsh7th/cmp-nvim-lsp"                  -- Cmp and LSP integration
+    use "hrsh7th/cmp-nvim-lua"                  -- Lua for Neovim completion
 
     -- Snippets
-    use "L3MON4D3/LuaSnip"              --snippet engine
-    use "rafamadriz/friendly-snippets"  -- a bunch of snippets to use
+    use "L3MON4D3/LuaSnip"                      -- Snippet engine
+    use "rafamadriz/friendly-snippets"          -- A bunch of snippets to use
+
+    -- Json
+    use "b0o/schemastore.nvim"                  -- Json schemas
+
+    -- LSP
+    use "neovim/nvim-lspconfig"                 -- Enable LSP
+    use "williamboman/nvim-lsp-installer"       -- Simple to use language server installer
 
     -- Automatically set up your configuration after cloning packer.nvim
-    if PACKER_BOOTSTRAP then
+    if PACKER_BOOSTRAP then
         require("packer").sync()
     end
 end)
