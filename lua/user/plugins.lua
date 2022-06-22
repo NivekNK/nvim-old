@@ -63,8 +63,9 @@ return packer.startup(function(use)
     use "L3MON4D3/LuaSnip"                      -- Snippet engine
     use "rafamadriz/friendly-snippets"          -- A bunch of snippets to use
 
-    -- Json
+    -- Misc
     use "b0o/schemastore.nvim"                  -- Json schemas
+    use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
 
     -- LSP
     use "neovim/nvim-lspconfig"                 -- Enable LSP

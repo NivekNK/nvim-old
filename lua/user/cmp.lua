@@ -10,6 +10,12 @@ if not snip_status_ok then
     return
 end
 
+local copilot_cmp_status_ok, copilot_comparators = pcall(require, "copilot_cmp.comparators")
+if not copilot_cmp_status_ok then
+    vim.notify("Copilot Cmp not working!")
+    return
+end
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
@@ -128,6 +134,24 @@ cmp.setup {
     experimental = {
         ghost_text = true,
         native_menu = false
+    },
+    sorting = {
+        priority_weight = 2,
+        comparators = {
+            copilot_comparators.prioritize,
+            copilot_comparators.score,
+
+            -- default comparitor list and order for nvim-cmp
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order
+        }
     }
 }
 
