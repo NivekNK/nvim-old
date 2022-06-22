@@ -42,44 +42,46 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
     -- Required plugins
-    use "wbthomason/packer.nvim"                -- Have packer manage itself
-    use "nvim-lua/popup.nvim"                   -- An implementation of the Popup API from vim in Neovim
-    use "nvim-lua/plenary.nvim"                 -- Useful lua functions used in lots of plugins
+    use "wbthomason/packer.nvim"                        -- Have packer manage itself
+    use "nvim-lua/popup.nvim"                           -- An implementation of the Popup API from vim in Neovim
+    use "nvim-lua/plenary.nvim"                         -- Useful lua functions used in lots of plugins
 
     -- Colorscheme
-    use "cpea2506/one_monokai.nvim"             -- One Monokai colorscheme
+    use "cpea2506/one_monokai.nvim"                     -- One Monokai colorscheme
     use "lunarvim/darkplus.nvim"
 
     -- Cmp
-    use "hrsh7th/nvim-cmp"                      -- The completion plugin
-    use "hrsh7th/cmp-buffer"                    -- Buffer completions
-    use "hrsh7th/cmp-path"                      -- Path completions
-    use "hrsh7th/cmp-cmdline"                   -- Cmdline completions
-    use "saadparwaiz1/cmp_luasnip"              -- Snippet completions
-    use "hrsh7th/cmp-nvim-lsp"                  -- Cmp and LSP integration
-    use "hrsh7th/cmp-nvim-lua"                  -- Lua for Neovim completion
+    use "hrsh7th/nvim-cmp"                              -- The completion plugin
+    use "hrsh7th/cmp-buffer"                            -- Buffer completions
+    use "hrsh7th/cmp-path"                              -- Path completions
+    use "hrsh7th/cmp-cmdline"                           -- Cmdline completions
+    use "saadparwaiz1/cmp_luasnip"                      -- Snippet completions
+    use "hrsh7th/cmp-nvim-lsp"                          -- Cmp and LSP integration
+    use "hrsh7th/cmp-nvim-lua"                          -- Lua for Neovim completion
 
     -- Snippets
-    use "L3MON4D3/LuaSnip"                      -- Snippet engine
-    use "rafamadriz/friendly-snippets"          -- A bunch of snippets to use
+    use "L3MON4D3/LuaSnip"                              -- Snippet engine
+    use "rafamadriz/friendly-snippets"                  -- A bunch of snippets to use
 
     -- Misc
-    use "b0o/schemastore.nvim"                  -- Json schemas
-    use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+    use "b0o/schemastore.nvim"                          -- Json schemas
+    use "windwp/nvim-autopairs"                         -- Autopairs, integrates with both cmp and treesitter
+    use "numToStr/Comment.nvim"                         -- Easy comments with keymap
 
     -- LSP
-    use "neovim/nvim-lspconfig"                 -- Enable LSP
-    use "williamboman/nvim-lsp-installer"       -- Simple to use language server installer
+    use "neovim/nvim-lspconfig"                         -- Enable LSP
+    use "williamboman/nvim-lsp-installer"               -- Simple to use language server installer
 
     -- Telescope
-    use "nvim-telescope/telescope.nvim"         -- Fuzzy finder
+    use "nvim-telescope/telescope.nvim"                 -- Fuzzy finder
 
     -- Treesitter
     use {
-        "nvim-treesitter/nvim-treesitter",      -- Language highlighting
+        "nvim-treesitter/nvim-treesitter",              -- Language highlighting
         run = ":TSUpdate"
     }
-    use "nvim-treesitter/playground"            -- Treesitter theme creator
+    use "nvim-treesitter/playground"                    -- Treesitter theme creator
+    use "JoosepAlviste/nvim-ts-context-commentstring"   -- Treesitter Comment.nvim compatibility
 
     -- Copilot
     use {
