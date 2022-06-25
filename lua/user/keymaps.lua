@@ -26,8 +26,8 @@ keymap("n", "<leader>j", "<C-w>j", noremap)
 keymap("n", "<leader>k", "<C-w>k", noremap)
 keymap("n", "<leader>l", "<C-w>l", noremap)
 
--- Open Files navigation panel in the left side
-keymap("n", "<leader>e", ":Lex 30<CR>", noremap)
+-- nvim-tree: Open files navigation panel in the left side
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", noremap)
 
 -- Resize selected panel
 keymap("n", "<C-Up>", ":resize +2<CR>", noremap)
@@ -260,6 +260,17 @@ M.comment_extra_keymaps = {
     -- Add comment at the end of line
     eol = "gcA"
 }
+
+------------------- nvim-tree --------------------
+
+function M.nvim_tree_keymaps(tree_cb)
+    local opts = {
+        { key = {"l", "<CR>", "o"}, cb = tree_cb "edit" },
+        { key = "h", cb = tree_cb "close_node" },
+        { key = "v", cb = tree_cb "vsplit" }
+    }
+    return opts
+end
 
 --------------------------------------------------
 

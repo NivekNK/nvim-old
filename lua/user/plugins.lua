@@ -78,6 +78,10 @@ return packer.startup(function(use)
     -- Git
     use "lewis6991/gitsigns.nvim"                           -- Git code control
 
+    -- nvim-tree
+    use "kyazdani42/nvim-web-devicons"                      -- Web dev icons
+    use "kyazdani42/nvim-tree.lua"                          -- File navigation panel
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()
