@@ -37,23 +37,30 @@ packer.init {
     
 return packer.startup(function(use)
     -- Required Plugins
-    use "wbthomason/packer.nvim"                                                                -- Packer for plugins installs
-    use "nvim-lua/popup.nvim"                                                                   -- An implementation of the Popup API from vim in Neovim
-    use "nvim-lua/plenary.nvim"                                                                 -- Useful lua functions used ny lots of plugins
+    use "wbthomason/packer.nvim"                            -- Packer for plugins installs
+    use "nvim-lua/popup.nvim"                               -- An implementation of the Popup API from vim in Neovim
+    use "nvim-lua/plenary.nvim"                             -- Useful lua functions used ny lots of plugins
 
     -- Misc Plugins
-    use "lunarvim/darkplus.nvim"
+    use "lunarvim/darkplus.nvim"                            -- Dark theme for Neovim based on VSCode theme
+    use "b0o/schemastore.nvim"                              -- Json schemas
 
-    -- Cmp plugins
-    use "hrsh7th/nvim-cmp"                                                                      -- Code completion engine
-    use "hrsh7th/cmp-buffer"                                                                    -- Buffer completions
-    use "hrsh7th/cmp-path"                                                                      -- Path completions
-    use "hrsh7th/cmp-cmdline"                                                                   -- Cmdline completions
-    use "saadparwaiz1/cmp_luasnip"                                                              -- Snippet completions
+    -- Cmp
+    use "hrsh7th/nvim-cmp"                                  -- Code completion engine
+    use "hrsh7th/cmp-buffer"                                -- Buffer completions
+    use "hrsh7th/cmp-path"                                  -- Path completions
+    use "hrsh7th/cmp-cmdline"                               -- Cmdline completions
+    use "saadparwaiz1/cmp_luasnip"                          -- Snippet completions
+    use "hrsh7th/cmp-nvim-lsp"                              -- Cmp and LSP integratio
+    use "hrsh7th/cmp-nvim-lua"                              -- Lua for Neovim completion
 
     -- Snippets
-    use "L3MON4D3/LuaSnip"                                                                      -- Snippet engine
-    use "rafamadriz/friendly-snippets"                                                          -- A bunch of snippets to use
+    use "L3MON4D3/LuaSnip"                                  -- Snippet engine
+    use "rafamadriz/friendly-snippets"                      -- A bunch of snippets to use
+
+    -- LSP
+    use "neovim/nvim-lspconfig"                             -- Enable LSP
+    use "williamboman/nvim-lsp-installer"                   -- Simple to use language server installer
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then

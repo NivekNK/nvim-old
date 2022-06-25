@@ -12,11 +12,6 @@ end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
-local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-end
-
 local kind_icons = {
     Text = "",
     Method = "m",
@@ -51,13 +46,15 @@ cmp.setup {
             luasnip.lsp_expand(args.body)
         end
     },
-    mapping = require("user.keymaps").cmpKeymaps(cmp),
+    mapping = require("user.keymaps").cmp_keymaps(cmp, luasnip),
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             -- Kind icons
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
             vim_item.menu = ({
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[NVIM_LUA]",
                 luasnip = "[Snippet]",
                 buffer = "[Buffer]",
                 path = "[Path]"
@@ -66,6 +63,8 @@ cmp.setup {
         end
     },
     sources = {
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" }
