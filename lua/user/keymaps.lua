@@ -50,8 +50,8 @@ keymap("n", "<CA-j>", "<ESC>:m .+1<CR><a>", noremap)
 keymap("n", "<CA-k>", "<ESC>:m .-2<CR><a>", noremap)
 
 -- Telescope: Find files and text
---keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", noremap)
---keymap("n", "<C-f>", "<cmd>Telescope live_grep<cr>", noremap)
+keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", noremap)
+keymap("n", "<C-f>", "<cmd>Telescope live_grep<cr>", noremap)
 
 -------------------- Insert ----------------------
 
@@ -157,6 +157,77 @@ function M.lsp_keymaps(bufnr)
         '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', noremap)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', noremap)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", noremap)
+end
+
+------------------- Telescope --------------------
+
+function M.telescope_insert_keymaps(actions)
+    local i = {
+        ["<C-n>"] = actions.cycle_history_next,
+        ["<C-p>"] = actions.cycle_history_prev,
+
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+
+        ["<C-c>"] = actions.close,
+
+        ["<Down>"] = actions.move_selection_next,
+        ["<Up>"] = actions.move_selection_previous,
+
+        ["<CR>"] = actions.select_default,
+        ["<C-x>"] = actions.select_horizontal,
+        ["<C-v>"] = actions.select_vertical,
+        ["<C-t>"] = actions.select_tab,
+
+        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-d>"] = actions.preview_scrolling_down,
+
+        ["<PageUp>"] = actions.results_scrolling_up,
+        ["<PageDown>"] = actions.results_scrolling_down,
+
+        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+        ["<C-l>"] = actions.complete_tag,
+        ["<C-_>"] = actions.which_key -- keys from pressing <C-/>
+    }
+    return i
+end
+
+function M.telescope_normal_keymaps(actions)
+    local n = {
+        ["<ESC>"] = actions.close,
+        ["<CR>"] = actions.select_default,
+        ["<C-x>"] = actions.select_horizontal,
+        ["<C-v>"] = actions.select_vertical,
+        ["<C-t>"] = actions.select_tab,
+
+        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+
+        ["j"] = actions.move_selection_next,
+        ["k"] = actions.move_selection_previous,
+        ["H"] = actions.move_to_top,
+        ["M"] = actions.move_to_middle,
+        ["L"] = actions.move_to_bottom,
+
+        ["<Down>"] = actions.move_selection_next,
+        ["<Up>"] = actions.move_selection_previous,
+        ["gg"] = actions.move_to_top,
+        ["G"] = actions.move_to_bottom,
+
+        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-d>"] = actions.preview_scrolling_down,
+
+        ["<PageUp>"] = actions.results_scrolling_up,
+        ["<PageDown>"] = actions.results_scrolling_down,
+
+        ["?"] = actions.which_key
+    }
+    return n
 end
 
 --------------------------------------------------

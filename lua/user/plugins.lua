@@ -34,7 +34,7 @@ packer.init {
         end
     }
 }
-    
+
 return packer.startup(function(use)
     -- Required Plugins
     use "wbthomason/packer.nvim"                            -- Packer for plugins installs
@@ -44,6 +44,7 @@ return packer.startup(function(use)
     -- Misc Plugins
     use "lunarvim/darkplus.nvim"                            -- Dark theme for Neovim based on VSCode theme
     use "b0o/schemastore.nvim"                              -- Json schemas
+    use "windwp/nvim-autopairs"                             -- Autopairs, integrates with both cmp and treesitter
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
@@ -61,6 +62,17 @@ return packer.startup(function(use)
     -- LSP
     use "neovim/nvim-lspconfig"                             -- Enable LSP
     use "williamboman/nvim-lsp-installer"                   -- Simple to use language server installer
+
+    -- Telescope
+    use "nvim-telescope/telescope.nvim"                     -- Fuzzy finder
+
+    -- Treesitter
+    use {
+        "nvim-treesitter/nvim-treesitter",                  -- Language highlighting
+        run = ":TSUpdate"
+    }
+    use "nvim-treesitter/playground"                        -- Treesitter theme creator
+    --use "JoosepAlviste/nvim-ts-context-commentstring"       -- Treesitter Comment.nvim compatibility
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
