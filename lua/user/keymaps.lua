@@ -267,7 +267,8 @@ function M.nvim_tree_keymaps(tree_cb)
     local opts = {
         { key = {"l", "<CR>", "o"}, cb = tree_cb "edit" },
         { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" }
+        { key = "v", cb = tree_cb "vsplit" },
+        { key = "n", cb = tree_cb "create" }
     }
     return opts
 end
