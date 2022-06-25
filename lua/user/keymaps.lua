@@ -62,6 +62,9 @@ for i = 1, 9 do
     keymap("n", ("<leader>%s"):format(i), ("<Plug>(cokeline-switch-%s)"):format(i), terminal)
 end
 
+-- LSP
+keymap("n", "fo", ":Format<CR>", noremap)
+
 -------------------- Insert ----------------------
 
 -- Fast escape from insert mode
@@ -162,8 +165,7 @@ function M.lsp_keymaps(bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", noremap)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", noremap)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', noremap)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gl",
-        '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>', noremap)
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", noremap)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', noremap)
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", noremap)
 end
