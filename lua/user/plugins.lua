@@ -45,6 +45,7 @@ return packer.startup(function(use)
     use "lunarvim/darkplus.nvim"                            -- Dark theme for Neovim based on VSCode theme
     use "b0o/schemastore.nvim"                              -- Json schemas
     use "windwp/nvim-autopairs"                             -- Autopairs, integrates with both cmp and treesitter
+    use "numToStr/Comment.nvim"                             -- Easy comments with keymap
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
@@ -72,7 +73,7 @@ return packer.startup(function(use)
         run = ":TSUpdate"
     }
     use "nvim-treesitter/playground"                        -- Treesitter theme creator
-    --use "JoosepAlviste/nvim-ts-context-commentstring"       -- Treesitter Comment.nvim compatibility
+    use "JoosepAlviste/nvim-ts-context-commentstring"       -- Treesitter Comment.nvim compatibility
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
