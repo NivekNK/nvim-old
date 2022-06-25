@@ -82,10 +82,6 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-web-devicons"                      -- Web dev icons
     use "kyazdani42/nvim-tree.lua"                          -- File navigation panel
 
-    -- Bufferline
-    use "akinsho/bufferline.nvim"                           -- Menu line for opened files/buffers
-    use "moll/vim-bbye"                                     -- Extension for buffer control
-
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()

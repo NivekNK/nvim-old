@@ -1,5 +1,4 @@
--- Nvim Modes
---    Normal Mode: "n"
+-- Nvim Modes Normal Mode: "n"
 --    Insert Mode: "i"
 --    Visual Mode: "v"
 --    Visual Block Mode: "x"
