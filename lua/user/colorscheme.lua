@@ -5,3 +5,9 @@ if not status_ok then
     vim.notify("colorscheme " .. colorscheme .. " not found!")
     return
 end
+
+M = {}
+
+M.highlight = "#8217BB"
+
+return M

@@ -52,6 +52,16 @@ keymap("n", "<CA-k>", "<ESC>:m .-2<CR><a>", noremap)
 keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", noremap)
 keymap("n", "<C-f>", "<cmd>Telescope live_grep<cr>", noremap)
 
+-- Cokeline
+keymap("n", "pf", "<Plug>(cokeline-pick-focus)", terminal)
+keymap("n", "pc", "<Plug>(cokeline-pick-close)", terminal)
+for i = 1, 9 do
+    -- Change current buffer focus to index
+    keymap("n", ("<A-%s>"):format(i), ("<Plug>(cokeline-focus-%s)"):format(i), terminal)
+    -- Move current buffer to index
+    keymap("n", ("<leader>%s"):format(i), ("<Plug>(cokeline-switch-%s)"):format(i), terminal)
+end
+
 -------------------- Insert ----------------------
 
 -- Fast escape from insert mode

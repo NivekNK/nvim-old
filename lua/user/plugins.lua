@@ -46,6 +46,7 @@ return packer.startup(function(use)
     use "b0o/schemastore.nvim"                              -- Json schemas
     use "windwp/nvim-autopairs"                             -- Autopairs, integrates with both cmp and treesitter
     use "numToStr/Comment.nvim"                             -- Easy comments with keymap
+    use "noib3/nvim-cokeline"                               -- Bufferline
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
