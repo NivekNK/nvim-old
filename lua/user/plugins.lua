@@ -75,6 +75,9 @@ return packer.startup(function(use)
     use "nvim-treesitter/playground"                        -- Treesitter theme creator
     use "JoosepAlviste/nvim-ts-context-commentstring"       -- Treesitter Comment.nvim compatibility
 
+    -- Git
+    use "lewis6991/gitsigns.nvim"                           -- Git code control
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()
