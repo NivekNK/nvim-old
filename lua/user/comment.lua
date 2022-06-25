@@ -4,7 +4,17 @@ if not status_ok then
     return
 end
 
+local keymaps = require("user.keymaps")
+
 comment.setup {
+    toggler = keymaps.comment_toggler_keymaps,
+    opleader = keymaps.comment_opleader_keymaps,
+    extra = keymaps.comment_extra_keymaps,
+    mappings = {
+        basic = true,
+        extra = true,
+        extended = false
+    },
     pre_hook = function(ctx)
         local U = require("Comment.utils")
 

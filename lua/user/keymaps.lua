@@ -230,6 +230,37 @@ function M.telescope_normal_keymaps(actions)
     return n
 end
 
+------------------- Autopairs --------------------
+
+M.autopairs_fast_wrap = "<A-e>"
+
+-------------------- Comment ---------------------
+
+-- Mappings in Normal mode
+M.comment_toggler_keymaps = {
+    -- Line-comment
+    line = "gcc",
+    -- Block-comment
+    block = "gbc"
+}
+
+-- Mappings in Visual mode
+M.comment_opleader_keymaps = {
+    -- Line-comment
+    line = "gc",
+    -- Block-comment
+    block = "gb"
+}
+
+M.comment_extra_keymaps = {
+    -- Add comment on the line above
+    above = "gcO",
+    -- Add comment on the line below
+    below = "gco",
+    -- Add comment at the end of line
+    eol = "gcA"
+}
+
 --------------------------------------------------
 
 return M
