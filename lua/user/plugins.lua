@@ -47,6 +47,7 @@ return packer.startup(function(use)
     use "windwp/nvim-autopairs"                             -- Autopairs, integrates with both cmp and treesitter
     use "numToStr/Comment.nvim"                             -- Easy comments with keymap
     use "noib3/nvim-cokeline"                               -- Bufferline
+    use "nvim-lualine/lualine.nvim"                         -- Status line
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
