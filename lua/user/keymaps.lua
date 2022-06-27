@@ -7,7 +7,7 @@
 
 local noremap = { noremap = true, silent = true }
 
-local terminal = { silent = true }
+local silent = { silent = true }
 
 -- Keymap function
 local keymap = vim.api.nvim_set_keymap
@@ -18,6 +18,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -------------------- Normal ----------------------
+
+-- Save file
+keymap("n", "<C-s>", ":w<CR>", noremap)
 
 -- Change between panels in window
 keymap("n", "<leader>h", "<C-w>h", noremap)
@@ -53,19 +56,22 @@ keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require
 keymap("n", "<C-f>", "<cmd>Telescope live_grep<cr>", noremap)
 
 -- Cokeline
-keymap("n", "pf", "<Plug>(cokeline-pick-focus)", terminal)
-keymap("n", "pc", "<Plug>(cokeline-pick-close)", terminal)
+keymap("n", "pf", "<Plug>(cokeline-pick-focus)", silent)
+keymap("n", "pc", "<Plug>(cokeline-pick-close)", silent)
 for i = 1, 9 do
     -- Change current buffer focus to index
-    keymap("n", ("<A-%s>"):format(i), ("<Plug>(cokeline-focus-%s)"):format(i), terminal)
+    keymap("n", ("<A-%s>"):format(i), ("<Plug>(cokeline-focus-%s)"):format(i), silent)
     -- Move current buffer to index
-    keymap("n", ("<leader>%s"):format(i), ("<Plug>(cokeline-switch-%s)"):format(i), terminal)
+    keymap("n", ("<leader>%s"):format(i), ("<Plug>(cokeline-switch-%s)"):format(i), silent)
 end
 
 -- LSP
 keymap("n", "fo", ":Format<CR>", noremap)
 
 -------------------- Insert ----------------------
+
+-- Save file
+keymap("i", "<C-s>", ":w<CR>", noremap)
 
 -- Fast escape from insert mode
 keymap("i", "jk", "<ESC>", noremap)
@@ -95,11 +101,11 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", noremap)
 
 ------------------- Terminal ---------------------
 
--- Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", terminal)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", terminal)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", terminal)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", terminal)
+-- Better silent navigation
+-- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", silent)
+-- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", silent)
+-- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", silent)
+-- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", silent)
 
 --------------------------------------------------
 
@@ -282,6 +288,19 @@ function M.nvim_tree_keymaps(tree_cb)
         { key = "n", cb = tree_cb "create" }
     }
     return opts
+end
+
+------------------ Toggleterm --------------------
+
+M.open_toggleterm = [[<C-\>]]
+
+function M.toggleterm_keymaps()
+    vim.api.nvim_buf_set_keymap(0, "t", "<ESC>", [[<C-\><C-n>]], noremap)
+    vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], noremap)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], noremap)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], noremap)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], noremap)
+    vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], noremap)
 end
 
 --------------------------------------------------

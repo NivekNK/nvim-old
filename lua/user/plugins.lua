@@ -48,6 +48,7 @@ return packer.startup(function(use)
     use "numToStr/Comment.nvim"                             -- Easy comments with keymap
     use "noib3/nvim-cokeline"                               -- Bufferline
     use "nvim-lualine/lualine.nvim"                         -- Status line
+    use "akinsho/toggleterm.nvim"                           -- Better terminal for neovim
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
