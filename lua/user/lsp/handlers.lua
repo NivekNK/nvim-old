@@ -59,8 +59,13 @@ local function lsp_highlight_document(client)
     end
 end
 
+local function disable_servers(client)
+    return client.name == "tsserver" or
+           client.name == "sumneko_lua"
+end
+
 M.on_attach = function(client, bufnr)
-    if client.name == "tsserver" then
+    if disable_servers(client) then
         client.resolved_capabilities.document_formatting = false
     end
     require("user.keymaps").lsp_keymaps(bufnr)
