@@ -86,6 +86,18 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-web-devicons"                      -- Web dev icons
     use "kyazdani42/nvim-tree.lua"                          -- File navigation panel
 
+    -- Copilot
+    use {
+        "zbirenbaum/copilot.lua",                           -- Github AI pair programming
+        event = { "VimEnter" },
+        config = function()
+            vim.defer_fn(function()
+                require("user.copilot")
+            end, 100)
+        end
+    }
+    use "zbirenbaum/copilot-cmp"                            -- Integration of Copilot with cmp for completions
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()

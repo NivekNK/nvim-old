@@ -10,6 +10,12 @@ if not snip_status_ok then
     return
 end
 
+local comparators_status_ok, copilot_comparators = pcall(require, "copilot_cmp.comparators")
+if not comparators_status_ok then
+    vim.notify("Error loading copilot_cmp.comparators!")
+    return
+end
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local kind_icons = {
@@ -37,10 +43,23 @@ local kind_icons = {
     Struct = "",
     Event = "",
     Operator = "",
-    TypeParameter = ""
+    TypeParameter = "",
+    Copilot = ""
 }
 
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg ="#6CC644" })
+
 cmp.setup {
+    enabled = function()
+        local context = require("cmp.config.context")
+
+        if vim.api.nvim_get_mode().mode == "c" then
+            return true
+        else
+            return not context.in_treesitter_capture("comment") and
+                   not context.in_syntax_group("Comment")
+        end
+    end,
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -51,8 +70,16 @@ cmp.setup {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
             -- Kind icons
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+            local icon_kind = vim_item.kind
+
+            if entry.source.name == "copilot" then
+                icon_kind = "Copilot"
+                vim_item.kind_hl_group = "CmpItemKindCopilot"
+            end
+
+            vim_item.kind = string.format("%s", kind_icons[icon_kind])
             vim_item.menu = ({
+                copilot = "[Copilot]",
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[NVIM_LUA]",
                 luasnip = "[Snippet]",
@@ -63,6 +90,7 @@ cmp.setup {
         end
     },
     sources = {
+        { name = "copilot" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip" },
@@ -79,5 +107,22 @@ cmp.setup {
     experimental = {
         ghost_text = true,
         native_menu = false
+    },
+    sorting = {
+        priority_weight = 2,
+        comparators = {
+            copilot_comparators.prioritize,
+            copilot_comparators.score,
+            -- Default comparitor list
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order
+        }
     }
 }
