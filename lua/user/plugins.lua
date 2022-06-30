@@ -49,6 +49,7 @@ return packer.startup(function(use)
     use "noib3/nvim-cokeline"                               -- Bufferline
     use "nvim-lualine/lualine.nvim"                         -- Status line
     use "akinsho/toggleterm.nvim"                           -- Better terminal for neovim
+    use "ahmedkhalf/project.nvim"                           -- Manage user projects
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
