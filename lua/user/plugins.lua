@@ -51,6 +51,7 @@ return packer.startup(function(use)
     use "akinsho/toggleterm.nvim"                           -- Better terminal for neovim
     use "ahmedkhalf/project.nvim"                           -- Manage user projects
     use "lewis6991/impatient.nvim"                          -- Make nvim load faster on startup
+    use "lukas-reineke/indent-blankline.nvim"               -- Indent line
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
