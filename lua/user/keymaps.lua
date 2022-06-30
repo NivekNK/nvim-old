@@ -285,7 +285,8 @@ function M.nvim_tree_keymaps()
         { key = { "l", "<CR>", "o" }, action = "edit", mode = "n" },
         { key = "h", action = "close_node" },
         { key = "v", action = "vsplit" },
-        { key = "C", action = "cd" }
+        { key = "C", action = "cd" },
+        { key = "n", action = "create" }
     }
     return opts
 end
