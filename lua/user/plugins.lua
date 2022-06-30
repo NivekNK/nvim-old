@@ -52,6 +52,8 @@ return packer.startup(function(use)
     use "ahmedkhalf/project.nvim"                           -- Manage user projects
     use "lewis6991/impatient.nvim"                          -- Make nvim load faster on startup
     use "lukas-reineke/indent-blankline.nvim"               -- Indent line
+    use "goolord/alpha-nvim"                                -- Greeter for nvim
+    use "antoinemadec/FixCursorHold.nvim"                   -- This is needed to fix lsp doc highlight
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
