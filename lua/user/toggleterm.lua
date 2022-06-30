@@ -9,6 +9,9 @@ local keymaps = require("user.keymaps")
 toggleterm.setup({
     size = 20,
     open_mapping = keymaps.open_toggleterm,
+    on_close = function()
+        vim.cmd("NvimTreeRefresh")
+    end,
     hide_numbers = true,
     shade_filetypes = {},
     shade_terminals = true,
