@@ -256,36 +256,36 @@ M.autopairs_fast_wrap = "<A-e>"
 -- Mappings in Normal mode
 M.comment_toggler_keymaps = {
     -- Line-comment
-    line = "gcc",
+    line = "com",
     -- Block-comment
-    block = "gbc"
+    block = "cob"
 }
 
 -- Mappings in Visual mode
 M.comment_opleader_keymaps = {
     -- Line-comment
-    line = "gc",
+    line = "co",
     -- Block-comment
-    block = "gb"
+    block = "cb"
 }
 
 M.comment_extra_keymaps = {
     -- Add comment on the line above
-    above = "gcO",
+    above = "coO",
     -- Add comment on the line below
-    below = "gco",
+    below = "coo",
     -- Add comment at the end of line
-    eol = "gcA"
+    eol = "coA"
 }
 
 ------------------- nvim-tree --------------------
 
-function M.nvim_tree_keymaps(tree_cb)
+function M.nvim_tree_keymaps()
     local opts = {
-        { key = {"l", "<CR>", "o"}, cb = tree_cb "edit" },
-        { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" },
-        { key = "n", cb = tree_cb "create" }
+        { key = { "l", "<CR>", "o" }, action = "edit", mode = "n" },
+        { key = "h", action = "close_node" },
+        { key = "v", action = "vsplit" },
+        { key = "C", action = "cd" }
     }
     return opts
 end

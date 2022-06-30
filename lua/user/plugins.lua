@@ -54,6 +54,7 @@ return packer.startup(function(use)
     use "lukas-reineke/indent-blankline.nvim"               -- Indent line
     use "goolord/alpha-nvim"                                -- Greeter for nvim
     use "antoinemadec/FixCursorHold.nvim"                   -- This is needed to fix lsp doc highlight
+    use "folke/which-key.nvim"                              -- Easy and fast access to keymaps
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine

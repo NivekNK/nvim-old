@@ -50,7 +50,7 @@ nvim_tree.setup {
         side = "left",
         mappings = {
             custom_only = false,
-            list = require("user.keymaps").nvim_tree_keymaps(tree_cb)
+            list = require("user.keymaps").nvim_tree_keymaps()
         },
         number = false,
         relativenumber = false
