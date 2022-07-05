@@ -93,13 +93,24 @@ local mappings = {
             end
         end, "Preview Markdown"
     },
-    -- ["T"] = { '<cmd>lua require("sidebar-nvim").toggle()<CR><cmd>lua require("sidebar-nvim.builtin.todos").toggle_all()<CR>', "NOTES" },
 	["T"] = {
         function()
             require("sidebar-nvim").toggle()
             require("user.sidebar.custom.todos").toggle_all()
         end, "NOTES"
     },
+    ["d"] = {
+        function()
+            local pos = vim.api.nvim_win_get_cursor(0)[2]
+            local line = vim.api.nvim_get_current_line()
+            local nline = line:sub(0, pos) .. os.date("%d-%m-%y") .. line:sub(pos + 1)
+            vim.api.nvim_set_current_line(nline)
+
+            local comment_api_status_ok, comment_api = pcall(require, "Comment.api")
+            if comment_api_status_ok then
+                comment_api.toggle_current_linewise()
+            end
+        end, "Insert Date" },
     ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["q"] = { "<cmd>q!<CR>", "Quit" },
