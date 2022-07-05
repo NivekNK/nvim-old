@@ -104,6 +104,17 @@ return packer.startup(function(use)
     }
     use "zbirenbaum/copilot-cmp"                            -- Integration of Copilot with cmp for completions
 
+    -- Note taking
+    use {
+        "iamcco/markdown-preview.nvim",                     -- Markdown preview
+        run = "cd app && npm install",
+        setup = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" }
+    }
+    use "sidebar-nvim/sidebar.nvim"                         -- Sidebar for showing file todos
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()

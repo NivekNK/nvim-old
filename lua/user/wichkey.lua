@@ -84,7 +84,23 @@ local mappings = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+    ["m"] = {
+        function()
+            local buf = vim.api.nvim_get_current_buf()
+            local ft = vim.api.nvim_buf_get_option(buf, "filetype")
+            if ft == "markdown" then
+                vim.cmd("MarkdownPreviewToggle")
+            end
+        end, "Preview Markdown"
+    },
+    -- ["T"] = { '<cmd>lua require("sidebar-nvim").toggle()<CR><cmd>lua require("sidebar-nvim.builtin.todos").toggle_all()<CR>', "NOTES" },
+	["T"] = {
+        function()
+            require("sidebar-nvim").toggle()
+            require("user.sidebar.custom.todos").toggle_all()
+        end, "NOTES"
+    },
+    ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["q"] = { "<cmd>q!<CR>", "Quit" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },

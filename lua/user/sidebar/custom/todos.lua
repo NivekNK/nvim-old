@@ -1,0 +1,226 @@
+local utils = require("sidebar-nvim.utils")
+local Loclist = require("sidebar-nvim.components.loclist")
+local config = require("user.sidebar.custom.config")
+local luv = vim.loop
+
+local loclist = Loclist:new({
+    groups_initially_closed = config.todos.initially_closed,
+    show_empty_groups = false,
+})
+
+-- Make sure all groups exist
+loclist:add_group("TODO")
+loclist:add_group("HACK")
+loclist:add_group("WARN")
+loclist:add_group("PERF")
+loclist:add_group("NOTE")
+loclist:add_group("FIX")
+
+local icons = {
+    TODO = { text = "", hl = "SidebarNvimTodoIconTodo" },
+    HACK = { text = "", hl = "SidebarNvimTodoIconHack" },
+    WARN = { text = "", hl = "SidebarNvimTodoIconWarn" },
+    PERF = { text = "", hl = "SidebarNvimTodoIconPerf" },
+    NOTE = { text = "", hl = "SidebarNvimTodoIconNote" },
+    FIX = { text = "", hl = "SidebarNvimTodoIconFix" },
+}
+
+local current_path_ignored_cache = false
+
+local function is_current_path_ignored(selected_file)
+    for _, path in pairs(config.todos.ignored_paths or {}) do
+        if vim.fn.expand(path) == selected_file then
+            return true
+        end
+    end
+
+    return false
+end
+
+local function async_update(ctx)
+    local selected_file = vim.fn.expand("%")
+
+    if selected_file == nil then
+        return
+    end
+
+    current_path_ignored_cache = is_current_path_ignored(selected_file)
+    if current_path_ignored_cache then
+        return
+    end
+
+    local todos = {}
+
+    local stdout = luv.new_pipe(false)
+    local stderr = luv.new_pipe(false)
+    local handle
+    local cmd
+    local args
+    local keywords_regex = "(TODO|NOTE|FIX|PERF|HACK|WARN)"
+
+    -- Use ripgrep by default, if it's installed
+    if vim.fn.executable("rg") == 1 then
+        cmd = "rg"
+        args = {
+            "--no-hidden",
+            "--column",
+            "--only-matching",
+            keywords_regex .. ":.*",
+        }
+    else
+        cmd = "git"
+        args = { "grep", "-no", "--column", "-EI", keywords_regex .. ":.*" }
+    end
+
+    handle = luv.spawn(cmd, {
+        args = args,
+        stdio = { nil, stdout, stderr },
+        cmd = vim.fn.expand("%"),
+    }, function()
+        local loclist_items = {}
+        for _, items in pairs(todos) do
+            for _, item in ipairs(items) do
+                table.insert(loclist_items, {
+                    group = item.tag,
+                    left = {
+                        icons[item.tag],
+                        { text = utils.truncate(item.text, ctx.width / 2) }
+                    },
+                    right = {},
+                    filepath = item.filepath,
+                    order = item.filepath,
+                    lnum = item.lnum,
+                    col = item.col,
+                })
+            end
+        end
+        loclist:set_items(loclist_items, { remove_groups = false })
+
+        luv.read_stop(stdout)
+        luv.read_stop(stderr)
+        stdout:close()
+        stderr:close()
+        handle:close()
+    end)
+
+    luv.read_start(stdout, function(err, data)
+        if data == nil then
+            return
+        end
+
+        for _, line in ipairs(vim.split(data, "\n")) do
+            if line ~= "" then
+                local filepath, lnum, col, tag, text = line:match("^(.+):(%d+):(%d+):(%w+):(.*)$")
+
+                if filepath and tag then
+                    if filepath == selected_file then
+                        if not todos[tag] then
+                            todos[tag] = {}
+                        end
+
+                        local category_tbl = todos[tag]
+
+                        category_tbl[#category_tbl + 1] = {
+                            filepath = filepath,
+                            lnum = lnum,
+                            col = col,
+                            tag = tag,
+                            text = text,
+                        }
+                    end
+                end
+            end
+        end
+
+        if err ~= nil then
+            vim.schedule(function()
+                utils.echo_warning(err)
+            end)
+        end
+    end)
+
+    luv.read_start(stderr, function(err, data)
+        if data == nil then
+            return
+        end
+
+        if err ~= nil then
+            vim.schedule(function()
+                utils.echo_warning(err)
+            end)
+        end
+    end)
+end
+
+return {
+    title = "MY NOTES",
+    icon = config.todos.icon,
+    draw = function(ctx)
+        local lines = {}
+        local hl = {}
+
+        if current_path_ignored_cache then
+            lines = { "<path ignored>" }
+        end
+
+        loclist:draw(ctx, lines, hl)
+
+        if #lines == 0 then
+            lines = { "<no TODOs>" }
+        end
+
+        return { lines = lines, hl = hl }
+    end,
+    highlights = {
+        groups = {},
+        links = {
+            SidebarNvimTodoFilename = "SidebarNvimLineNr",
+            SidebarNvimTodoLineNumber = "SidebarNvimLineNr",
+            SidebarNvimTodoColNumber = "SidebarNvimLineNr",
+            SidebarNvimTodoIconTodo = "DiagnosticInfo",
+            SidebarNvimTodoIconHack = "DiagnosticWarning",
+            SidebarNvimTodoIconWarn = "DiagnosticWarning",
+            SidebarNvimTodoIconPerf = "DiagnosticError",
+            SidebarNvimTodoIconNote = "DiagnosticHint",
+            SidebarNvimTodoIconFix = "DiagnosticError",
+        },
+    },
+    bindings = {
+        ["t"] = function(line)
+            loclist:toggle_group_at(line)
+        end,
+        ["<CR>"] = function(line)
+            local location = loclist:get_location_at(line)
+            if not location then
+                return
+            end
+            vim.cmd("wincmd p")
+            vim.cmd("e " .. location.filepath)
+            vim.fn.cursor(location.lnum, location.col)
+        end,
+    },
+    setup = function(ctx)
+        async_update(ctx)
+    end,
+    update = function(ctx)
+        async_update(ctx)
+    end,
+    toggle_all = function()
+        loclist:toggle_all_groups()
+    end,
+    close_all = function()
+        loclist:close_all_groups()
+    end,
+    open_all = function()
+        loclist:open_all_groups()
+    end,
+    open = function(group)
+        loclist:open_group(group)
+    end,
+    close = function(group)
+        loclist:close_group(group)
+    end,
+    toggle = function(group)
+        loclist:toggle_group(group)
+    end,
+}
