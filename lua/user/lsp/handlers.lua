@@ -61,7 +61,8 @@ end
 
 local function disable_servers(client)
     return client.name == "tsserver" or
-           client.name == "sumneko_lua"
+           client.name == "sumneko_lua" or
+           client.name == "jsonls"
 end
 
 M.on_attach = function(client, bufnr)

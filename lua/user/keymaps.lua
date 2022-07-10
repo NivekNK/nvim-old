@@ -51,6 +51,9 @@ keymap("n", "<A-k>", "<ESC>:m .-2<CR>", noremap)
 keymap("n", "<CA-j>", "<ESC>:m .+1<CR><a>", noremap)
 keymap("n", "<CA-k>", "<ESC>:m .-2<CR><a>", noremap)
 
+-- Select text
+keymap("n", "<C-a>", "ggVG", noremap)
+
 -- Telescope: Find files and text
 keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", noremap)
 keymap("n", "<C-f>", "<cmd>Telescope live_grep<cr>", noremap)
