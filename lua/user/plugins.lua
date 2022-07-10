@@ -55,6 +55,7 @@ return packer.startup(function(use)
     use "goolord/alpha-nvim"                                -- Greeter for nvim
     use "antoinemadec/FixCursorHold.nvim"                   -- This is needed to fix lsp doc highlight
     use "folke/which-key.nvim"                              -- Easy and fast access to keymaps
+    use "RRethy/vim-illuminate"                             -- Highlighting of other uses of the selected word
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
@@ -93,6 +94,7 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua"                          -- File navigation panel
 
     -- Copilot
+    -- use "github/copilot.vim"
     use {
         "zbirenbaum/copilot.lua",                           -- Github AI pair programming
         event = { "VimEnter" },

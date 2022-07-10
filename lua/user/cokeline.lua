@@ -1,6 +1,6 @@
 local status_ok, cokeline = pcall(require, "cokeline")
 if not status_ok then
-    vim.notify("Cokeline not found!")
+    vim.notify("Error loading cokeline!")
     return
 end
 
@@ -118,7 +118,7 @@ cokeline.setup {
         },
         {
             text = function(buffer)
-                return buffer.is_modified and ' ●' or '  '
+                return buffer.is_modified and ' ● ' or '   '
             end,
             fg = function(buffer)
                 return buffer.is_modified and yellow or nil

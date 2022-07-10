@@ -9,5 +9,6 @@ end
 M = {}
 
 M.highlight = "#8217BB"
+M.copilot_cmp = "#6CC644"
 
 return M

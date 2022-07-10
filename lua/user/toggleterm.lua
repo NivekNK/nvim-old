@@ -1,12 +1,20 @@
 local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
-    vim.notify("toggleterm not found!")
+    vim.notify("Error loading toggleterm!")
     return
 end
 
 local keymaps = require("user.keymaps")
 
-toggleterm.setup({
+local function get_shell()
+    if vim.loop.os_uname().sysname == "Windows" then
+        return "pwsh -NoLogo"
+    end
+
+    return vim.o.shell
+end
+
+toggleterm.setup {
     size = 20,
     open_mapping = keymaps.open_toggleterm,
     on_close = function()
@@ -21,7 +29,7 @@ toggleterm.setup({
     persist_size = true,
     direction = "float",
     close_on_exit = true,
-    shell = "pwsh -NoLogo",
+    shell = get_shell(),
     float_opts = {
         border = "curved",
         winblend = 0,
@@ -30,7 +38,7 @@ toggleterm.setup({
             background = "Normal"
         }
     }
-})
+}
 
 function _G.set_terminal_keymaps()
     keymaps.toggleterm_keymaps()
