@@ -11,7 +11,7 @@ local function get_shell()
         return "pwsh -NoLogo"
     end
 
-    return vim.o.shell
+    return "zsh"
 end
 
 toggleterm.setup {

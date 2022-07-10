@@ -301,7 +301,7 @@ end
 
 ------------------ Toggleterm --------------------
 
-M.open_toggleterm = [[<C-'>]]
+M.open_toggleterm = [[<C-\>]]
 
 function M.toggleterm_keymaps()
     vim.api.nvim_buf_set_keymap(0, "t", "<ESC>", [[<C-\><C-n>]], noremap)
