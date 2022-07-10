@@ -56,6 +56,7 @@ return packer.startup(function(use)
     use "antoinemadec/FixCursorHold.nvim"                   -- This is needed to fix lsp doc highlight
     use "folke/which-key.nvim"                              -- Easy and fast access to keymaps
     use "RRethy/vim-illuminate"                             -- Highlighting of other uses of the selected word
+    use "norcalli/nvim-colorizer.lua"                       -- Color highlighter
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
