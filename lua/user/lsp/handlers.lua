@@ -55,16 +55,23 @@ local function lsp_highlight_document(client)
     illuminate.on_attach(client)
 end
 
-local function disable_servers(client)
-    return client.name == "tsserver" or
-           client.name == "sumneko_lua" or
-           client.name == "jsonls"
+local function format_filter(client)
+    local status_ok, null_ls = pcall(require, "null-ls")
+    if not status_ok then
+        return
+    end
+
+    local sources = require("null-ls.sources")
+    local method = null_ls.methods.FORMATTING
+    local available_sources = sources.get_available(vim.bo.filetype, method)
+
+    if #available_sources > 0 then
+        client.server_capabilities.document_formatting = false
+    end
 end
 
 M.on_attach = function(client, bufnr)
-    if disable_servers(client) then
-        client.server_capabilities.document_formatting = false
-    end
+    format_filter(client)
     require("user.keymaps").lsp_keymaps(bufnr)
     vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format{ async = true }' ]]
     lsp_highlight_document(client)

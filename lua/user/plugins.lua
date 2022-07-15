@@ -118,6 +118,12 @@ return packer.startup(function(use)
     }
     use "sidebar-nvim/sidebar.nvim"                         -- Sidebar for showing file todos
 
+    -- Dap
+    use "mfussenegger/nvim-dap"                             -- Debug Protocol Adapter
+    use "theHamsta/nvim-dap-virtual-text"                   -- Virtual text while debugging with dap
+    use "rcarriga/nvim-dap-ui"                              -- Better UI for dap
+    use "nvim-telescope/telescope-dap.nvim"                 -- Telescope integration for dap
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()

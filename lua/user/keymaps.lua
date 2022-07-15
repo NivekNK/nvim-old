@@ -75,6 +75,16 @@ keymap("n", "fo", ":Format<CR>", noremap)
 keymap("n", "<A-n>", '<cmd>lua require("illuminate").next_reference{ wrap = true }<CR>', noremap)
 keymap("n", "<A-p>", '<cmd>lua require("illuminate").next_reference{ reverse = true, wrap = true }<CR>', noremap)
 
+-- Dap
+keymap("n", "<F5>", ':lua require("dap").continue()<CR>', noremap)
+keymap("n", "<F10>", ':lua require("dap").step_over()<CR>', noremap)
+keymap("n", "<F11>", ':lua require("dap").step_into()<CR>', noremap)
+keymap("n", "<F12>", ':lua require("dap").step_out()<CR>', noremap)
+keymap("n", "<leader>b", ':lua require("dap").toggle_breakpoint()<CR>', noremap)
+keymap("n", "<leader>B", ':lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', noremap)
+keymap("n", "<leader>lp", ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', noremap)
+keymap("n", "<leader>dr", ':lua require("dap").repl.open()<CR>', noremap)
+
 -------------------- Insert ----------------------
 
 -- Save file
@@ -311,6 +321,22 @@ function M.toggleterm_keymaps()
     vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], noremap)
     vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], noremap)
 end
+
+---------------------- Dap -----------------------
+
+M.dapui_normal_keymaps = {
+    -- Use a table to apply multiple mappings
+    expand = { "<CR>", "<2-LeftMouse>" },
+    open = "o",
+    remove = "d",
+    edit = "e",
+    repl = "r",
+    toggle = "t"
+}
+
+M.dapui_floating_keymaps = {
+    close = { "q", "<Esc>" }
+}
 
 --------------------------------------------------
 
