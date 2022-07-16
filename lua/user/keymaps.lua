@@ -85,6 +85,9 @@ keymap("n", "<leader>B", ':lua require("dap").set_breakpoint(vim.fn.input("Break
 keymap("n", "<leader>lp", ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', noremap)
 keymap("n", "<leader>dr", ':lua require("dap").repl.open()<CR>', noremap)
 
+-- Color Picker
+keymap("n", "<C-c>", "<cmd>PickColor<CR>", noremap)
+
 -------------------- Insert ----------------------
 
 -- Save file
@@ -96,6 +99,9 @@ keymap("i", "jk", "<ESC>", noremap)
 -- Move text up and down
 keymap("i", "<A-j>", "<ESC>:m .+1<CR><a>", noremap)
 keymap("i", "<A-k>", "<ESC>:m .-2<CR><a>", noremap)
+
+-- Color Picker
+keymap("i", "<C-c>", "<cmd>PickColorInsert<CR>", noremap)
 
 -------------------- Visual ----------------------
 
@@ -336,6 +342,13 @@ M.dapui_normal_keymaps = {
 
 M.dapui_floating_keymaps = {
     close = { "q", "<Esc>" }
+}
+
+----------------- color-picker -------------------
+
+M.color_picker_keymaps = {
+    ["U"] = "<Plug>ColorPickerSlider5Decrease",
+    ["O"] = "<Plug>ColorPickerSlider5Increase"
 }
 
 --------------------------------------------------

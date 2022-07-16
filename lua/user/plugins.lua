@@ -55,9 +55,10 @@ return packer.startup(function(use)
     use "goolord/alpha-nvim"                                -- Greeter for nvim
     use "antoinemadec/FixCursorHold.nvim"                   -- This is needed to fix lsp doc highlight
     use {
-        "RRethy/vim-hexokinase",                            -- Show color on virtual text
+        "RRethy/vim-hexokinase",                            -- In buffer color visualizer on virtual text
         run = "cd hexokinase/.. && make hexokinase"
     }
+    use "ziontee113/color-picker.nvim"                      -- Color picker
     use "folke/which-key.nvim"                              -- Easy and fast access to keymaps
     use "RRethy/vim-illuminate"                             -- Highlighting of other uses of the selected word
 
