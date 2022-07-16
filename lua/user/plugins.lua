@@ -54,9 +54,12 @@ return packer.startup(function(use)
     use "lukas-reineke/indent-blankline.nvim"               -- Indent line
     use "goolord/alpha-nvim"                                -- Greeter for nvim
     use "antoinemadec/FixCursorHold.nvim"                   -- This is needed to fix lsp doc highlight
+    use {
+        "RRethy/vim-hexokinase",                            -- Show color on virtual text
+        run = "cd hexokinase/.. && make hexokinase"
+    }
     use "folke/which-key.nvim"                              -- Easy and fast access to keymaps
     use "RRethy/vim-illuminate"                             -- Highlighting of other uses of the selected word
-    use "norcalli/nvim-colorizer.lua"                       -- Color highlighter
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine

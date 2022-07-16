@@ -14,5 +14,13 @@ copilot.setup {
 	},
 	ft_disable = { "markdown" },
 	plugin_manager_path = vim.fn.stdpath("data") .. "/site/pack/packer",
-	server_opts_overrides = {}
+	server_opts_overrides = {
+        trace = "verbose",
+        settings = {
+            advanced = {
+                listCount = 10,
+                inlineSuggestCount = 3
+            }
+        }
+    }
 }
