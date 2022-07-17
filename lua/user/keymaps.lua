@@ -69,7 +69,7 @@ for i = 1, 9 do
 end
 
 -- LSP
-keymap("n", "fo", ":Format<CR>", noremap)
+keymap("n", "fo", ':Format<CR>:lua vim.notify("File formatted!")<CR>', noremap)
 
 -- Illuminate
 keymap("n", "<A-n>", '<cmd>lua require("illuminate").next_reference{ wrap = true }<CR>', noremap)

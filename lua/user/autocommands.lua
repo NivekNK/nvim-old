@@ -28,6 +28,15 @@ vim.cmd [[
         autocmd!
         autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
     augroup end
+
+    augroup FileTypeSpecificAutocommands
+        autocmd FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+        autocmd FileType javascriptreact setlocal tabstop=2 softtabstop=2 shiftwidth=2
+        autocmd FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+        autocmd FileType typescriptreact setlocal tabstop=2 softtabstop=2 shiftwidth=2
+        autocmd FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2
+        autocmd FileType php setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    augroup END
 ]]
 
 vim.cmd [[command! Q q]]
