@@ -1,4 +1,6 @@
-return {
+M = {}
+
+M.opts = {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -13,3 +15,7 @@ return {
 		}
 	}
 }
+
+M.server = nil
+
+return M

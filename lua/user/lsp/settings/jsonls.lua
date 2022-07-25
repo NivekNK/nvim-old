@@ -1,10 +1,12 @@
 local status_ok, schemastore = pcall(require, "schemastore")
 if not status_ok then
 	vim.notify("Error loading schemastore!")
-	return
+	return nil
 end
 
-local opts = {
+M = {}
+
+M.opts = {
 	settings = {
 		json = {
 			schemas = schemastore.json.schemas(),
@@ -22,4 +24,6 @@ local opts = {
 	}
 }
 
-return opts
+M.server = nil
+
+return M

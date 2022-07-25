@@ -79,6 +79,7 @@ return packer.startup(function(use)
     use "neovim/nvim-lspconfig"                             -- Enable LSP
     use "williamboman/nvim-lsp-installer"                   -- Simple to use language server installer
     use "jose-elias-alvarez/null-ls.nvim"                   -- For formatters and linters
+    use "simrat39/rust-tools.nvim"                          -- Tools for Rust development
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"                     -- Fuzzy finder

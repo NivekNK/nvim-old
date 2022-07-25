@@ -39,4 +39,20 @@ vim.cmd [[
     augroup END
 ]]
 
+vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+    callback = function()
+        local luasnip = require("luasnip")
+        if luasnip.expand_or_jumpable() then
+            luasnip.unlink_current()
+        end
+    end
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    pattern = { "*.rs" },
+    callback = function()
+        vim.lsp.codelens.refresh()
+    end
+})
+
 vim.cmd [[command! Q q]]

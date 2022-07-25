@@ -4,24 +4,25 @@ if not status_ok then
     return
 end
 
-dap.adapters.cppdbg = {
-    id = "cppdbg",
+dap.adapters.lldb = {
     type = "executable",
-    command = "/home/nivek/.dotfiles/nvim/.config/nvim/vendor/vscode-cpptools/extension/debugAdapters/bin/OpenDebugAD7"
-    -- command = "/home/nivek/.dotfiles/nvim/.config/nvim/vendor/vscode-cpptools/debugAdapters/bin/OpenDebugAD7"
-    -- command = "/home/nivek/.config/nvim/vendor/vscode-cpptools/debugAdapters/bin/OpenDebugAD7"
-    -- command = os.getenv("HOME") .. "/.config/nvim/vendor/vscode-cpptools/debugAdapters/bin/OpenDebugAD7"
+    command = "/usr/bin/lldb-vscode",
+    name = "lldb"
 }
 
 dap.configurations.cpp = {
     {
-        name = "Launch (vscode-cpptools)",
-        type = "cppdbg",
+        name = "Launch",
+        type = "lldb",
         request = "launch",
         program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', 'file')
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
         end,
-        cwd = '${workspaceFolder}',
-        stopOnEntry = true
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = {},
+        runInTerminal = true
     }
 }
+
+dap.configurations.c = dap.configurations.cpp
