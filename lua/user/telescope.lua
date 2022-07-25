@@ -4,7 +4,7 @@ if not status_ok then
     return
 end
 
-local keymaps = require("user.keymaps")
+local keymaps = require("user.keymaps.telescope")
 local actions = require("telescope.actions")
 
 telescope.setup {
@@ -13,8 +13,8 @@ telescope.setup {
         selection_caret = " ",
         path_display = { "smart" },
         mappings = {
-            i = keymaps.telescope_insert_keymaps(actions),
-            n = keymaps.telescope_normal_keymaps(actions)
+            i = keymaps.get_insert(actions),
+            n = keymaps.get_normal(actions)
         }
     },
     pickers = {},

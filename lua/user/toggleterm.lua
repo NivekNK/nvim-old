@@ -4,7 +4,7 @@ if not status_ok then
     return
 end
 
-local keymaps = require("user.keymaps")
+local keymaps = require("user.keymaps.toggleterm")
 
 local function get_shell()
     if vim.loop.os_uname().sysname == "Windows" then
@@ -16,7 +16,7 @@ end
 
 toggleterm.setup {
     size = 20,
-    open_mapping = keymaps.open_toggleterm,
+    open_mapping = keymaps.open,
     on_close = function()
         vim.cmd("NvimTreeRefresh")
     end,
@@ -41,7 +41,7 @@ toggleterm.setup {
 }
 
 function _G.set_terminal_keymaps()
-    keymaps.toggleterm_keymaps()
+    keymaps.setup_buffer()
 end
 
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')

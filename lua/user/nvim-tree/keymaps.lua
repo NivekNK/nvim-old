@@ -116,4 +116,4 @@ local fn = {
 	end,
 }
 
-return require("user.keymaps").nvim_tree_keymaps(fn)
+return require("user.keymaps.nvim-tree").get(fn)

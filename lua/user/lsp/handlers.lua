@@ -72,7 +72,7 @@ end
 
 M.on_attach = function(client, bufnr)
     format_filter(client)
-    require("user.keymaps").lsp_keymaps(bufnr)
+    require("user.keymaps.lsp").setup_buffer(bufnr)
     vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format{ async = true }' ]]
     lsp_highlight_document(client)
 end

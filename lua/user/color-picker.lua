@@ -7,7 +7,7 @@ end
 color_picker.setup {
     ["icons"] = { "ﱢ", "" },
 	["border"] = "solid", -- none | single | double | rounded | solid | shadow
-	["keymap"] = require("user.keymaps").color_picker_keymaps
+	["keymap"] = require("user.keymaps.color-picker").keymap
 }
 
 -- if you don't want weird border background colors around the popup.

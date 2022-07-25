@@ -4,11 +4,11 @@ if not status_ok then
     return
 end
 
-local keymaps = require("user.keymaps")
+local keymaps = require("user.keymaps.dap")
 
 dapui.setup {
 	icons = { expanded = "▾", collapsed = "▸" },
-	mappings = keymaps.dapui_normal_keymaps,
+	mappings = keymaps.dapui_normal,
 	-- Expand lines larger than the window
 	-- Requires >= 0.7
 	expand_lines = vim.fn.has("nvim-0.7"),
@@ -44,7 +44,7 @@ dapui.setup {
 		max_height = nil, -- These can be integers or a float between 0 and 1.
 		max_width = nil, -- Floats will be treated as percentage of your screen.
 		border = "single", -- Border style. Can be "single", "double" or "rounded"
-		mappings = keymaps.dapui_floating_keymaps
+		mappings = keymaps.dapui_floating
 	},
 	windows = { indent = 1 },
 	render = {

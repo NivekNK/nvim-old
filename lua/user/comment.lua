@@ -4,12 +4,12 @@ if not status_ok then
     return
 end
 
-local keymaps = require("user.keymaps")
+local keymaps = require("user.keymaps.comment")
 
 comment.setup {
-    toggler = keymaps.comment_toggler_keymaps,
-    opleader = keymaps.comment_opleader_keymaps,
-    extra = keymaps.comment_extra_keymaps,
+    toggler = keymaps.toggler,
+    opleader = keymaps.opleader,
+    extra = keymaps.extra,
     mappings = {
         basic = true,
         extra = true,

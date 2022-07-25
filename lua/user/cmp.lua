@@ -65,7 +65,7 @@ cmp.setup {
             luasnip.lsp_expand(args.body)
         end
     },
-    mapping = require("user.keymaps").cmp_keymaps(cmp, luasnip),
+    mapping = require("user.keymaps.cmp").get(cmp, luasnip),
     formatting = {
         fields = { "kind", "abbr", "menu" },
         format = function(entry, vim_item)
