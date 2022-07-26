@@ -4,10 +4,10 @@ if not status_ok then
 	return
 end
 
-vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointCondition", { text = "ﳂ", texthl = "Error", linehl = "", numhl = "" })
-vim.fn.sign_define("DapBreakpointRejected", { text = "R", texthl = "", linehl = "", numhl = "" })
-vim.fn.sign_define("DapLogPoint", { text = "L", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpoint", { text = "⚪", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "🔵", texthl = "", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "R", texthl = "Error", linehl = "", numhl = "" })
+vim.fn.sign_define("DapLogPoint", { text = "🗨", texthl = "", linehl = "", numhl = "" })
 vim.fn.sign_define("DapStopped", { text = "", texthl = "Error" })
 
 require("user.dap.extensions.virtual-text")

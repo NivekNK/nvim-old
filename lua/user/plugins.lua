@@ -84,9 +84,11 @@ return packer.startup(function(use)
         "weilbith/nvim-code-action-menu",                   -- Popup menu for LSP code actions
         cmd = "CodeActionMenu"
     }
+    use "kosayoda/nvim-lightbulb"                           -- Code actions at cursor position
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"                     -- Fuzzy finder
+    use "xiyaowong/telescope-emoji.nvim"                    -- Emoji search with Telescope
 
     -- Treesitter
     use {
