@@ -12,6 +12,8 @@ function M.setup()
 
     K.nmap("fo", ':Format<CR>:lua vim.notify("File formatted!")<CR>')
 
+    K.nmap("<leader>}", ":CodeActionMenu<CR>")
+
 end
 
 function M.setup_buffer(buffer)

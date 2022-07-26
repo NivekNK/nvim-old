@@ -80,6 +80,10 @@ return packer.startup(function(use)
     use "williamboman/nvim-lsp-installer"                   -- Simple to use language server installer
     use "jose-elias-alvarez/null-ls.nvim"                   -- For formatters and linters
     use "simrat39/rust-tools.nvim"                          -- Tools for Rust development
+    use {
+        "weilbith/nvim-code-action-menu",                   -- Popup menu for LSP code actions
+        cmd = "CodeActionMenu"
+    }
 
     -- Telescope
     use "nvim-telescope/telescope.nvim"                     -- Fuzzy finder
