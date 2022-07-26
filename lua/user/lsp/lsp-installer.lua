@@ -13,7 +13,8 @@ local servers = {
     "tsserver",
     "html",
     "rust_analyzer",
-    "taplo"
+    "taplo",
+    "omnisharp"
 }
 
 lsp_installer.setup {

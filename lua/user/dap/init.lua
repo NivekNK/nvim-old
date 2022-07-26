@@ -15,3 +15,4 @@ require("user.dap.extensions.dapui").setup(dap)
 require("user.dap.extensions.telescope")
 
 require("user.dap.languages.cpp")
+require("user.dap.languages.cs")
