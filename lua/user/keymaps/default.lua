@@ -41,6 +41,9 @@ function M.setup()
     -- Select text
     K.nmap("<C-a>", "ggVG")
 
+    -- Open link
+    K.nsmap("gx",":silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>")
+
 -------------------- Insert ----------------------
 
     -- Save file

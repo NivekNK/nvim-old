@@ -14,7 +14,8 @@ local servers = {
     "html",
     "rust_analyzer",
     "taplo",
-    "omnisharp"
+    "omnisharp",
+    "cmake"
 }
 
 lsp_installer.setup {

@@ -10,11 +10,11 @@ if not snip_status_ok then
     return
 end
 
-local comparators_status_ok, copilot_comparators = pcall(require, "copilot_cmp.comparators")
-if not comparators_status_ok then
-    vim.notify("Error loading copilot_cmp.comparators!")
-    return
-end
+-- local comparators_status_ok, copilot_comparators = pcall(require, "copilot_cmp.comparators")
+-- if not comparators_status_ok then
+--     vim.notify("Error loading copilot_cmp.comparators!")
+--     return
+-- end
 
 require("luasnip/loaders/from_vscode").lazy_load()
 
@@ -111,8 +111,8 @@ cmp.setup {
     sorting = {
         priority_weight = 2,
         comparators = {
-            copilot_comparators.prioritize,
-            copilot_comparators.score,
+            -- copilot_comparators.prioritize,
+            -- copilot_comparators.score,
             -- Default comparitor list
             cmp.config.compare.offset,
             cmp.config.compare.exact,

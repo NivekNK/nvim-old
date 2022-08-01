@@ -13,8 +13,8 @@ local required_keymaps = {
 }
 
 for _, keymaps in pairs(required_keymaps) do
-    local temp = require("user.keymaps." .. keymaps)
-    if temp then
-        temp.setup()
+    local M = require("user.keymaps." .. keymaps)
+    if M then
+        M.setup()
     end
 end

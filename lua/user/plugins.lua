@@ -41,8 +41,11 @@ return packer.startup(function(use)
     use "nvim-lua/popup.nvim"                               -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim"                             -- Useful lua functions used ny lots of plugins
 
-    -- Misc Plugins
+    -- Themes
     use "lunarvim/darkplus.nvim"                            -- Dark theme for Neovim based on VSCode theme
+    use "folke/tokyonight.nvim"
+
+    -- Misc Plugins
     use "b0o/schemastore.nvim"                              -- Json schemas
     use "windwp/nvim-autopairs"                             -- Autopairs, integrates with both cmp and treesitter
     use "numToStr/Comment.nvim"                             -- Easy comments with keymap
@@ -61,6 +64,7 @@ return packer.startup(function(use)
     use "ziontee113/color-picker.nvim"                      -- Color picker
     use "folke/which-key.nvim"                              -- Easy and fast access to keymaps
     use "RRethy/vim-illuminate"                             -- Highlighting of other uses of the selected word
+    use "Shatur/neovim-cmake"                               -- Cmake for neovim
 
     -- Cmp
     use "hrsh7th/nvim-cmp"                                  -- Code completion engine
@@ -97,6 +101,7 @@ return packer.startup(function(use)
     }
     use "nvim-treesitter/playground"                        -- Treesitter theme creator
     use "JoosepAlviste/nvim-ts-context-commentstring"       -- Treesitter Comment.nvim compatibility
+    use "Badhi/nvim-treesitter-cpp-tools"                   -- Tools for a better C++ development
 
     -- Git
     use "lewis6991/gitsigns.nvim"                           -- Git code control
@@ -106,17 +111,17 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua"                          -- File navigation panel
 
     -- Copilot
-    -- use "github/copilot.vim"
-    use {
-        "zbirenbaum/copilot.lua",                           -- Github AI pair programming
-        event = { "VimEnter" },
-        config = function()
-            vim.defer_fn(function()
-                require("user.copilot")
-            end, 100)
-        end
-    }
-    use "zbirenbaum/copilot-cmp"                            -- Integration of Copilot with cmp for completions
+    use "github/copilot.vim"
+    -- use {
+    --     "zbirenbaum/copilot.lua",                           -- Github AI pair programming
+    --     event = { "VimEnter" },
+    --     config = function()
+    --         vim.defer_fn(function()
+    --             require("user.copilot")
+    --         end, 100)
+    --     end
+    -- }
+    -- use "zbirenbaum/copilot-cmp"                            -- Integration of Copilot with cmp for completions
 
     -- Note taking
     use {
